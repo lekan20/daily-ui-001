@@ -1,35 +1,55 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import Input from './input';
+import styled from 'styled-components';
+
+const StyledModal = styled.div`
+  background: #3E363F;
+  border-radius: 2px;
+  padding: 20px;
+  width: 200px;
+`;
+
+const StyledButton = styled.button`
+  align-items: center;
+  background: #DD403A;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  display: flex;
+  font-family: "Lato", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 20px;
+  outline: none;
+  padding: 10px 9px 10px 11px;
+  text-transform: uppercase;
+  width: 100%;
+`;
+
 
   const Modal = props => {
 
-    const closeOnEscapeKeyDown = (e) => {
-      if((e.charCode || e.keyCode) === 27) {
-        props.onClose();
-      }
-    }
-
-    useEffect(() => {
-      document.body.addEventListener('keydown', closeOnEscapeKeyDown)
-      return function cleanup() {
-        document.body.removeEventListener('keydown', closeOnEscapeKeyDown)
-      }
-    }, [])
-
     return (
-    <div className={`modal ${props.show ? 'show' : ''}`} onClick={props.onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <div className="modal-header">
-            <h4 className="modal-title">{props.title}</h4>
+      <StyledModal>
+        <div className="modal-content" >
+          <div className="modal-header">
+              <h4 className="modal-title">{props.title}</h4>
+          </div>
+          <div className="modal-body">
+            <form
+                onSubmit={props.onSubmit} >
+                <Input id={'name'} type={'text'} placeholder={'Lekan'}/>
+                <Input id={'email'} type={'text'} placeholder={'Email'} />
+                <Input id={'password'} type={'password'} placeholder={'Password'} />
+                <StyledButton className="button">
+                  Log in
+                </StyledButton>
+            </form>
+          </div>
         </div>
-        <div className="modal-body">
-            {props.children}
-        </div>
-        <div className="modal-footer">
-            <button onClick={props.onClose} className="button">Sign Up</button>
-        </div>
-      </div>
-    </div>
-    )
+      </StyledModal>
+    );
   }
  
 
