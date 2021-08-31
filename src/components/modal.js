@@ -11,7 +11,7 @@ const StyledModal = styled.div`
 
 const StyledButton = styled.button`
   align-items: center;
-  background: #DD403A;
+  background: #1974d2;
   border: 0;
   border-radius: 3px;
   color: white;
@@ -27,22 +27,26 @@ const StyledButton = styled.button`
   width: 100%;
 `;
 
+const ModalTitle = styled.h4`
+  color: white;
+`;
+
 
   const Modal = props => {
 
     return (
       <StyledModal>
-        <div className="modal-content" >
-          <div className="modal-header">
-              <h4 className="modal-title">{props.title}</h4>
+        <div>
+          <div>
+              <ModalTitle>{props.title}</ModalTitle>
           </div>
-          <div className="modal-body">
+          <div>
             <form
                 onSubmit={props.onSubmit} >
                 <Input id={'name'} type={'text'} placeholder={'Lekan'}/>
                 <Input id={'email'} type={'text'} placeholder={'Email'} />
                 <Input id={'password'} type={'password'} placeholder={'Password'} />
-                <StyledButton className="button">
+                <StyledButton>
                   Log in
                 </StyledButton>
             </form>
